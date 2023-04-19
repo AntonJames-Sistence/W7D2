@@ -11,7 +11,20 @@
 
   <body>
     <header>
-      <h1>Welcome to my music app</h1>
+      <center><h1 style="color: red; border: 1px solid black;">My super music app!</h1></center>
+      <% if logged_in? %>
+      <form action="<%= session_url %>" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="where_is_my_auth_token?" value="form_authenticity_token">
+
+        <input type="submit" value="ByeBye">
+      </form>
+
+      <% else %>
+        <a href="<%= new_user_url %>">Sign Up</a>
+        <a href="<%= new_session_url %>">Login</a>
+      <% end %>
+
     </header>
     <%= yield %>
   </body>
